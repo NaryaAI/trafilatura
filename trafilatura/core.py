@@ -472,6 +472,8 @@ def handle_textelem(element, potential_tags, options):
         new_element = handle_table(element, potential_tags, options)
     elif element.tag == 'graphic' and 'graphic' in potential_tags:
         new_element = handle_image(element)
+    elif element.tag == 'img' and 'img' in potential_tags:
+        new_element = handle_image(element)
     else:
         # other elements (div, ??, ??)
         new_element = handle_other_elements(element, potential_tags, options)
@@ -539,6 +541,7 @@ def extract_content(tree, options):
         potential_tags.update(['table', 'td', 'th', 'tr'])
     if options.images is True:
         potential_tags.add('graphic')
+        potential_tags.add('img')
     if options.links is True:
         potential_tags.add('ref')
     # iterate
